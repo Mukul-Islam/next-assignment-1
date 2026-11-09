@@ -25,7 +25,7 @@ const processInput = (value:string|number|boolean):string|number=>{
         return "Active"
       }
       else{
-        return "inactive"
+        return "Inactive"
       }
     }
     
@@ -36,8 +36,67 @@ const processInput = (value:string|number|boolean):string|number=>{
 
 const formatCoordinate = (coordinate:[number,number,string]):string=>{
 
-    const [latitude,longtitude,locationName] = coordinate;
-    return `Location: ${locationName} (${latitude} ${longtitude})`
+    const [latitude,longitude,locationName] = coordinate;
+    return `Location: ${locationName} (${latitude} ${longitude})`
 }
 
 
+const concatenateArrays = <T>(...arrays:T[][]):T[]=>{
+   const result = [];
+  for(const arr of arrays){
+    for(const item of arr){
+
+        result.push(item)
+    }
+  }
+  return result;
+}
+
+
+
+interface Course {
+    title:string;
+    students:number;
+    isPublished:boolean;
+}
+
+const getPopularCourses =(courses:Course[],minStudent:number):Course[]=>{
+   return courses.filter((course)=>
+        course.isPublished && course.students>=minStudent
+        )       
+}
+
+
+
+
+const pluckValues = <T, K extends keyof T>(items:T[],key:K):T[K][]=>{
+   return items.map((item)=>item[key])
+}
+
+
+
+
+class Employee{
+   protected name:string;
+   private baseSalary:number;
+    constructor(name:string,baseSalary:number){
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+
+    getDetails(){
+        return `Employee: ${this.name},BaseSalary: ${this.baseSalary}`
+    }
+}
+class Manager extends Employee{
+    private department:string;
+
+    constructor(name:string,baseSalary:number,department:string){
+        super(name,baseSalary)
+        this.department = department;
+    }
+
+    getRoleInfo(){
+        return `Manager of ${this.department}: ${this.name}`
+    }
+}
