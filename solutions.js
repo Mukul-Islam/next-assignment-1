@@ -27,7 +27,7 @@ const processInput = (value) => {
 };
 const formatCoordinate = (coordinate) => {
     const [latitude, longitude, locationName] = coordinate;
-    return `Location: ${locationName} (${latitude} ${longitude})`;
+    return `Location: ${locationName} (${latitude}, ${longitude})`;
 };
 const concatenateArrays = (...arrays) => {
     const result = [];
@@ -52,7 +52,7 @@ class Employee {
         this.baseSalary = baseSalary;
     }
     getDetails() {
-        return `Employee: ${this.name},BaseSalary: ${this.baseSalary}`;
+        return `Employee: ${this.name}, BaseSalary: ${this.baseSalary}`;
     }
 }
 class Manager extends Employee {
@@ -65,4 +65,16 @@ class Manager extends Employee {
         return `Manager of ${this.department}: ${this.name}`;
     }
 }
+const validateAgeAsync = (age) => {
+    return new Promise((solve, reject) => {
+        if (age >= 18) {
+            setTimeout(() => {
+                solve("Access Granted");
+            }, 1000);
+        }
+        else {
+            reject(new Error("Access Denied: Must be 18 or older"));
+        }
+    });
+};
 export {};
