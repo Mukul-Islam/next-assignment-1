@@ -1,6 +1,6 @@
 Typescript Assignment-1
 
-solution: - [TypeScript Solutions](./solutions.ts)typescript assignment solution
+solution: - [solutions.ts](./solutions.ts)typescript assignment solution
 
 Blog: the blog link is here
 
